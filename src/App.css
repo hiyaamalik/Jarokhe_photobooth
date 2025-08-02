@@ -1,18 +1,156 @@
-/* Basic reset and app layout */
-body {
+/* Import Google Fonts for an elegant look */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:ital,wght@0,400;1,400&display=swap');
+
+/* Basic reset for a full-page layout */
+body, html {
   margin: 0;
-  font-family: sans-serif;
-  text-align: center;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fdfaf5;
+  overflow: hidden;
 }
 
-.App header {
-  padding: 1rem;
-  background-color: #f4f4f4;
+/* --- Initial Landing Image Styles --- */
+
+.landing-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
 }
 
-/* Styles for the responsive hero image */
+.landing-container.fading {
+  opacity: 0;
+}
+
 .hero-image {
   width: 100%;
-  height: auto;
-  display: block; /* Removes bottom space under the image */
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* --- Main Content (CSS Frame) Styles --- */
+
+.main-content {
+  /* Removed flex properties to allow the container to be a simple block element */
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  animation: fadeInContent 1.5s ease-in;
+}
+
+/* Each layer is styled below */
+
+.frame-gold-border {
+  width: 100%;
+  height: 100%;
+  padding: 1vmin; /* Use vmin for responsive padding */
+  background: linear-gradient(45deg, #b38728, #fcf6ba, #b38728);
+  box-sizing: border-box;
+}
+
+.frame-cream-border {
+  width: 100%;
+  height: 100%;
+  padding: 1vmin;
+  background: #fdfaf5;
+  box-sizing: border-box;
+}
+
+.frame-floral-border {
+  width: 100%;
+  height: 100%;
+  padding: 2vmin;
+  /* Simplified repeating floral pattern using CSS gradients */
+  background-image: 
+    repeating-radial-gradient(circle at center, #d1a3a3 0, #d1a3a3 3px, transparent 4px, transparent 8px),
+    repeating-radial-gradient(circle at center, #a8d8b9 0, #a8d8b9 1px, transparent 2px, transparent 6px);
+  background-size: 20px 20px;
+  box-sizing: border-box;
+}
+
+.frame-maroon-border {
+  width: 100%;
+  height: 100%;
+  padding: 0.5vmin;
+  background: #800000;
+  box-sizing: border-box;
+}
+
+.frame-arch-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: white; /* The white content area */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* This pseudo-element creates the patterned area and the arch shape */
+.frame-arch-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Simplified geometric pattern */
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, #e6c0c1 4px, #e6c0c1 8px);
+  background-size: 12px 12px;
+  
+  /* The CSS mask that carves out the arch shape */
+  -webkit-mask-image: 
+    radial-gradient(circle at 30% 28%, transparent 13%, #000 13.5%),
+    radial-gradient(circle at 70% 28%, transparent 13%, #000 13.5%),
+    radial-gradient(circle at 50% 28%, transparent 17%, #000 17.5%),
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: destination-out;
+  mask-composite: subtract;
+}
+
+.welcome-text-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #5d4037;
+  padding: 2rem;
+  padding-top: 25%; /* Pushes text down to clear the arch */
+}
+
+.welcome-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  font-weight: 400;
+  margin: 0;
+}
+
+.welcome-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #c85a5f;
+}
+
+.welcome-tagline {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0;
+  max-width: 40ch;
+}
+
+@keyframes fadeInContent {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
