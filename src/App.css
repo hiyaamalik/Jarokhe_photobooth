@@ -9,7 +9,7 @@ body, html {
   height: 100%;
   font-family: 'Montserrat', sans-serif;
   background-color: #fdfaf5;
-  overflow: hidden;
+  overflow: hidden; /* This correctly prevents the whole page from scrolling */
 }
 
 /* --- Initial Landing Image Styles --- */
@@ -42,7 +42,6 @@ body, html {
 /* --- Main Content (CSS Frame) Styles --- */
 
 .main-content {
-  /* Removed flex properties to allow the container to be a simple block element */
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
@@ -94,7 +93,10 @@ body, html {
   background: white; /* The white content area */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* MODIFIED: Align content to the top */
+  align-items: flex-start; 
+  /* ADDED: Allow vertical scrolling ONLY inside this container */
+  overflow-y: auto;
 }
 
 /* This pseudo-element creates the patterned area and the arch shape */
@@ -126,6 +128,9 @@ body, html {
   color: #5d4037;
   padding: 2rem;
   padding-top: 25%; /* Pushes text down to clear the arch */
+  /* ADDED: Ensures space at the bottom when scrolling */
+  padding-bottom: 5vh; 
+  box-sizing: border-box; /* Ensures padding is included in height calculation */
 }
 
 .welcome-subtitle {
