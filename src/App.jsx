@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
-import HeroIntro from './components/HeroIntro';
-import './styles/main.css';
+import React from 'react';
+import './App.css';
 
-const App = () => {
-  const [showLanding, setShowLanding] = useState(false);
-
+function App() {
   return (
-    <>
-      {!showLanding && <HeroIntro onFinish={() => setShowLanding(true)} />}
-
-      {showLanding && (
-        <div className="landing">
-          <h1>Welcome to Ethnic Photobooth 📸</h1>
-          <p>Capture memories with tradition. Add your favorite frames and print instantly.</p>
-        </div>
-      )}
-    </>
+    <div className="App">
+      <header>
+        <h1>My Awesome Project 🖼️</h1>
+      </header>
+      
+      <main>
+        <picture>
+          {/* Desktop version (screens wider than 1024px) */}
+          <source media="(min-width: 1024px)" srcSet="/hero-desktop.jpg" />
+          
+          {/* Tablet version (screens wider than 768px) */}
+          <source media="(min-width: 768px)" srcSet="/hero-tablet.jpg" />
+          
+          {/* Mobile version (default) */}
+          <img 
+            src="/hero-mobile.jpg" 
+            alt="A descriptive caption for the hero image"
+            className="hero-image"
+          />
+        </picture>
+      </main>
+    </div>
   );
-};
+}
 
 export default App;
